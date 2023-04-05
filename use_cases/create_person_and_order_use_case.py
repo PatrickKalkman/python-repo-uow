@@ -1,0 +1,18 @@
+from models.person import Person
+from models.order import Order
+from unit_of_work import UnitOfWork
+from typing import Tuple
+
+
+class CreatePersonAndOrderUseCase:
+    def __init__(self, unit_of_work: UnitOfWork):
+        self.unit_of_work = unit_of_work
+
+    def execute(self, person: Person, order: Order) -> Tuple[Person, Order]:
+        with self.unit_of_work as uow:
+            uow.persons.add(person)
+
+            order.person_id = person.id
+            uow.orders.add(order)
+
+        return person, order
