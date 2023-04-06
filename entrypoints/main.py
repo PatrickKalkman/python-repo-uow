@@ -25,10 +25,11 @@ if __name__ == "__main__":
         person_repository = SQLitePersonRepository(conn)
         order_repository = SQLiteOrderRepository(conn)
 
-        unit_of_work = UnitOfWork(connection, person_repository, order_repository)
-        create_person_and_order_use_case = CreatePersonAndOrderUseCase(unit_of_work)
+        unit_of_work = UnitOfWork(connection, person_repository,
+                                  order_repository)
+        create_use_case = CreatePersonAndOrderUseCase(unit_of_work)
 
         new_person = Person(name="John Doe", age=30)
-        new_order = Order(person_id=None, order_date="2023-04-03", total_amount=100.0)
+        new_order = Order(order_date="2023-04-03", total_amount=100.0)
 
-        created_person, created_order = create_person_and_order_use_case.execute(new_person, new_order)
+        person, order = create_use_case.execute(new_person, new_order)

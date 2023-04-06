@@ -11,13 +11,13 @@ class SQLiteOrderRepository(BaseRepository[Order]):
 
     def _create_table(self):
         cursor = self.connection.cursor()
-        cursor.execute('''
+        cursor.execute("""
             CREATE TABLE IF NOT EXISTS persons (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 name TEXT NOT NULL,
                 age INTEGER NOT NULL
             )
-        ''')
+        """)
         self.connection.commit()
 
     def add(self, order: Order):
@@ -26,7 +26,8 @@ class SQLiteOrderRepository(BaseRepository[Order]):
         VALUES (?, ?, ?)
         """
         cursor = self.connection.cursor()
-        cursor.execute(query, (order.person_id, order.order_date, order.total_amount))
+        cursor.execute(query, (order.person_id, order.order_date,
+                               order.total_amount))
         order.id = cursor.lastrowid
 
     def update(self, order: Order):
@@ -35,16 +36,21 @@ class SQLiteOrderRepository(BaseRepository[Order]):
         SET person_id = ?, order_date = ?, total_amount = ?
         WHERE id = ?
         """
-        self.connection.execute(query, (order.person_id, order.order_date, order.total_amount, order.id))
+        self.connection.execute(query, (order.person_id, order.order_date,
+                                order.total_amount, order.id))
 
     def delete(self, order_id: int):
         query = "DELETE FROM orders WHERE id = ?"
         self.connection.execute(query, (order_id,))
 
     def get_by_id(self, order_id: int) -> Optional[Order]:
-        query = "SELECT id, person_id, order_date, total_amount FROM orders WHERE id = ?"
+        query = """
+        SELECT id, person_id, order_date, total_amount
+        FROM orders WHERE id = ?
+        """
         cursor = self.connection.execute(query, (order_id,))
         row = cursor.fetchone()
         if row:
-            return Order(id=row[0], person_id=row[1], order_date=row[2], total_amount=row[3])
+            return Order(id=row[0], person_id=row[1], order_date=row[2],
+                         total_amount=row[3])
         return None

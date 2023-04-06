@@ -32,7 +32,8 @@ class SQLitePersonRepository(BaseRepository[Person]):
 
     def get_by_id(self, person_id: string) -> Person:
         cursor = self.connection.cursor()
-        cursor.execute("SELECT id, name, age FROM persons WHERE id=?", (person_id))
+        cursor.execute("SELECT id, name, age FROM persons WHERE id=?",
+                       (person_id))
         row = cursor.fetchone()
         if row:
             return Person(row[1], row[2], row[0])
