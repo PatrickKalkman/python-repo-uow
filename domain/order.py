@@ -7,4 +7,5 @@ class Order:
         self.total_amount = total_amount
 
     def __str__(self):
-        return f'Order(id={self.id}, person_id={self.person_id}, order_date={self.order_date}, total_amount={self.total_amount})'
+        return f'''Order(id={self.id}, person_id={self.person_id},
+          order_date={self.order_date}, total_amount={self.total_amount})'''
