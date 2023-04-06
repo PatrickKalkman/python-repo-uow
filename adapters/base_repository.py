@@ -3,7 +3,6 @@ from abc import ABC, abstractmethod
 
 T = TypeVar('T')
 
-
 class BaseRepository(ABC, Generic[T]):
     """A base class for repositories"""
 

@@ -1,6 +1,6 @@
-from models.person import Person
-from models.order import Order
-from unit_of_work import UnitOfWork
+from domain.person import Person
+from domain.order import Order
+from use_cases.unit_of_work import UnitOfWork
 from typing import Tuple
 
 

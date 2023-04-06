@@ -1,7 +1,7 @@
 import sqlite3
 from typing import Optional
-from models.order import Order
-from base_repository import BaseRepository
+from domain.order import Order
+from adapters.base_repository import BaseRepository
 
 
 class SQLiteOrderRepository(BaseRepository[Order]):

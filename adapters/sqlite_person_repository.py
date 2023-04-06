@@ -1,7 +1,7 @@
 import string
 
-from base_repository import BaseRepository
-from models.person import Person
+from adapters.base_repository import BaseRepository
+from domain.person import Person
 
 
 class SQLitePersonRepository(BaseRepository[Person]):

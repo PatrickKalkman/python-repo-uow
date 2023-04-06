@@ -1,12 +1,12 @@
 from contextlib import contextmanager
 import sqlite3
 
-from sqlite_person_repository import SQLitePersonRepository
-from sqlite_order_repository import SQLiteOrderRepository
-from sqlite_connection import SQLiteConnection
-from unit_of_work import UnitOfWork
-from models.person import Person
-from models.order import Order
+from adapters.sqlite_person_repository import SQLitePersonRepository
+from adapters.sqlite_order_repository import SQLiteOrderRepository
+from adapters.sqlite_connection import SQLiteConnection
+from use_cases.unit_of_work import UnitOfWork
+from domain.person import Person
+from domain.order import Order
 from use_cases.create_person_and_order_use_case import CreatePersonAndOrderUseCase
 
 

@@ -1,7 +1,7 @@
-from base_connection import BaseConnection
-from base_repository import BaseRepository
-from models.order import Order
-from models.person import Person
+from adapters.base_connection import BaseConnection
+from adapters.base_repository import BaseRepository
+from domain.order import Order
+from domain.person import Person
 
 
 class UnitOfWork:

@@ -1,5 +1,5 @@
 import sqlite3
-from base_connection import BaseConnection
+from adapters.base_connection import BaseConnection
 
 
 class SQLiteConnection(BaseConnection):
