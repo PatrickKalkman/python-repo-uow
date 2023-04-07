@@ -1,4 +1,3 @@
-import sqlite3
 from typing import Optional
 
 from domain.order import Order
@@ -6,7 +5,7 @@ from adapters.base_repository import BaseRepository
 
 
 class SQLiteOrderRepository(BaseRepository[Order]):
-    def __init__(self, connection: sqlite3.Connection):
+    def __init__(self, connection):
         self.connection = connection
         self._create_table()
 

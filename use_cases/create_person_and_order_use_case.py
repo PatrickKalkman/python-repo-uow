@@ -13,7 +13,11 @@ class CreatePersonAndOrderUseCase:
         with self.unit_of_work as uow:
             uow.persons.add(person)
 
-            order.person_id = person.id
+            if person.id is not None:
+                order.person_id = int(person.id)
+            else:
+                raise ValueError("Person id cannot be None")
+
             uow.orders.add(order)
 
         return person, order

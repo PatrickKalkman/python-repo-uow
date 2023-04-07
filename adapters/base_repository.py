@@ -1,4 +1,4 @@
-from typing import TypeVar, Generic
+from typing import TypeVar, Generic, Optional
 from abc import ABC, abstractmethod
 
 T = TypeVar('T')
@@ -23,6 +23,6 @@ class BaseRepository(ABC, Generic[T]):
         raise NotImplementedError()
 
     @abstractmethod
-    def get_by_id(self, item_id: int) -> T:
+    def get_by_id(self, item_id: int) -> Optional[T]:
         """Retrieve an item by its id"""
         raise NotImplementedError()

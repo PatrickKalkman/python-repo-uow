@@ -1,4 +1,4 @@
-import string
+from typing import Optional
 
 from adapters.base_repository import BaseRepository
 from domain.person import Person
@@ -28,13 +28,14 @@ class SQLitePersonRepository(BaseRepository[Person]):
         )
         person.id = cursor.lastrowid
 
-    def get_by_id(self, person_id: string) -> Person:
+    def get_by_id(self, person_id: int) -> Optional[Person]:
         cursor = self.connection.cursor()
         cursor.execute("SELECT id, name, age FROM persons WHERE id=?",
                        (person_id))
         row = cursor.fetchone()
         if row:
             return Person(row[1], row[2], row[0])
+        return None
 
     def update(self, person: Person):
         cursor = self.connection.cursor()
@@ -43,6 +44,6 @@ class SQLitePersonRepository(BaseRepository[Person]):
             (person.name, person.age, person.id)
         )
 
-    def delete(self, person_id: string):
+    def delete(self, person_id: int):
         cursor = self.connection.cursor()
         cursor.execute("DELETE FROM persons WHERE id=?", (person_id))

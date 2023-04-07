@@ -17,7 +17,7 @@ unit_of_work = UnitOfWork(connection, person_repository,
 create_use_case = CreatePersonAndOrderUseCase(unit_of_work)
 
 new_person = Person(name="John Doe", age=30)
-new_order = Order(person_id=None, order_date="2023-04-03",
+new_order = Order(order_date="2023-04-03",
                   total_amount=100.0)
 
 person, order = create_use_case.execute(new_person, new_order)
