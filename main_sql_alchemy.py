@@ -5,7 +5,7 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 from adapters.sql_alchemy_person_repository import SQLAlchemyPersonRepository
 from adapters.sql_alchemy_order_repository import SQLAlchemyOrderRepository
 from adapters.sql_alchemy_connection import SQLAlchemyConnection
-from adapters.sql_alchemy_mappers import create_mappers
+from adapters.sql_alchemy_mappers import create_tables_and_mappers
 from use_cases.unit_of_work import UnitOfWork
 from domain.person import Person
 from domain.order import Order
@@ -16,7 +16,7 @@ from use_cases.create_person_and_order_use_case import (
 @contextmanager
 def create_database_session():
     Base = declarative_base()
-    create_mappers(Base.metadata)
+    create_tables_and_mappers(Base.metadata)
     engine = create_engine("sqlite:///./db/data.db")
     Base.metadata.create_all(engine)
     SessionFactory = sessionmaker(bind=engine)

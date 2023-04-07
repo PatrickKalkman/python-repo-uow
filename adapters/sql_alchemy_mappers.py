@@ -5,7 +5,7 @@ from domain.order import Order
 from domain.person import Person
 
 
-def create_mappers(metadata):
+def create_tables_and_mappers(metadata):
     person_table = Table(
         'person', metadata,
         Column('id', Integer, primary_key=True),
