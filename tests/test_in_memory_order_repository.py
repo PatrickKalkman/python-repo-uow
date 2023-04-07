@@ -1,5 +1,3 @@
-import pytest
-
 from domain.order import Order
 from adapters.in_memory_order_repository import InMemoryOrderRepository
 
