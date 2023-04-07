@@ -11,15 +11,13 @@ class SQLitePersonRepository(BaseRepository[Person]):
 
     def _create_table(self):
         cursor = self.connection.cursor()
-        cursor.execute('''
-            CREATE TABLE IF NOT EXISTS orders (
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS persons (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                person_id INTEGER NOT NULL,
-                order_date TEXT NOT NULL,
-                total_amount REAL NOT NULL,
-                FOREIGN KEY (person_id) REFERENCES persons (id)
+                name TEXT NOT NULL,
+                age INTEGER NOT NULL
             )
-        ''')
+        """)
         self.connection.commit()
 
     def add(self, person: Person):
