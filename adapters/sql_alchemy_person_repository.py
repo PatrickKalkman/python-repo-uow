@@ -18,9 +18,9 @@ class SQLAlchemyPersonRepository(BaseRepository[Person]):
         self.session.merge(person)
 
     def delete(self, person_id: int):
-        person = self.session.query(Person).get(person_id)
+        person = self.session.get(Person, person_id)
         if person:
             self.session.delete(person)
 
     def get_by_id(self, person_id: int) -> Optional[Person]:
-        return self.session.query(Person).get(person_id)
+        return self.session.get(Person, person_id)

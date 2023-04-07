@@ -23,15 +23,15 @@ class SQLitePersonRepository(BaseRepository[Person]):
     def add(self, person: Person):
         cursor = self.connection.cursor()
         cursor.execute(
-            "INSERT INTO persons (id, name, age) VALUES (?, ?, ?)",
-            (person.id, person.name, person.age)
+            "INSERT INTO persons (name, age) VALUES (?, ?)",
+            (person.name, person.age)
         )
         person.id = cursor.lastrowid
 
     def get_by_id(self, person_id: int) -> Optional[Person]:
         cursor = self.connection.cursor()
         cursor.execute("SELECT id, name, age FROM persons WHERE id=?",
-                       (person_id))
+                       (person_id,))
         row = cursor.fetchone()
         if row:
             return Person(row[1], row[2], row[0])
@@ -46,4 +46,4 @@ class SQLitePersonRepository(BaseRepository[Person]):
 
     def delete(self, person_id: int):
         cursor = self.connection.cursor()
-        cursor.execute("DELETE FROM persons WHERE id=?", (person_id))
+        cursor.execute("DELETE FROM persons WHERE id=?", (person_id,))

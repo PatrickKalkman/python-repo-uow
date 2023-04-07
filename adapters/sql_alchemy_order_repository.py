@@ -16,9 +16,9 @@ class SQLAlchemyOrderRepository(BaseRepository[Order]):
         self.session.merge(order)
 
     def delete(self, order_id: int):
-        order = self.session.query(Order).get(order_id)
+        order = self.session.get(Order, order_id)
         if order:
             self.session.delete(order)
 
     def get_by_id(self, order_id: int) -> Optional[Order]:
-        return self.session.query(Order).get(order_id)
+        return self.session.get(Order, order_id)
