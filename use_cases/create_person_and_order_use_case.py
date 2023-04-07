@@ -1,7 +1,8 @@
+from typing import Tuple
+
 from domain.person import Person
 from domain.order import Order
 from use_cases.unit_of_work import UnitOfWork
-from typing import Tuple
 
 
 class CreatePersonAndOrderUseCase:

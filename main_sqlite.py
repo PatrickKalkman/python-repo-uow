@@ -1,5 +1,3 @@
-
-
 from contextlib import contextmanager
 import sqlite3
 
@@ -9,7 +7,8 @@ from adapters.sqlite_connection import SQLiteConnection
 from use_cases.unit_of_work import UnitOfWork
 from domain.person import Person
 from domain.order import Order
-from use_cases.create_person_and_order_use_case import CreatePersonAndOrderUseCase
+from use_cases.create_person_and_order_use_case import (
+    CreatePersonAndOrderUseCase)
 
 
 @contextmanager

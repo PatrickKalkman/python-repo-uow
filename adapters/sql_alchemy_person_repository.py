@@ -1,4 +1,3 @@
-# repositories/sqlalchemy_person_repository.py
 from typing import Optional
 from sqlalchemy.orm import Session
 
