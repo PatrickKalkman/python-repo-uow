@@ -6,21 +6,21 @@ from domain.person import Person
 
 
 class SQLAlchemyPersonRepository(BaseRepository[Person]):
-    def __init__(self, session: Session):
-        self.session = session
+    def __init__(self, session: Session) -> None:
+        self.session: Session = session
 
-    def add(self, person: Person):
-        self.session.add(person)
+    def add(self, item: Person) -> None:
+        self.session.add(item)
         # flush() is needed to get the id of the person
         self.session.flush()
 
-    def update(self, person: Person):
-        self.session.merge(person)
+    def update(self, item: Person) -> None:
+        self.session.merge(item)
 
-    def delete(self, person_id: int):
-        person = self.session.get(Person, person_id)
+    def delete(self, item_id: int) -> None:
+        person: Person | None = self.session.get(Person, item_id)
         if person:
             self.session.delete(person)
 
-    def get_by_id(self, person_id: int) -> Optional[Person]:
-        return self.session.get(Person, person_id)
+    def get_by_id(self, item_id: int) -> Optional[Person]:
+        return self.session.get(Person, item_id)
