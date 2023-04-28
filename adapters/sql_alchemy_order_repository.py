@@ -6,19 +6,19 @@ from domain.order import Order
 
 
 class SQLAlchemyOrderRepository(BaseRepository[Order]):
-    def __init__(self, session: Session):
-        self.session = session
+    def __init__(self, session: Session) -> None:
+        self.session: Session = session
 
-    def add(self, order: Order):
-        self.session.add(order)
+    def add(self, item: Order) -> None:
+        self.session.add(item)
 
-    def update(self, order: Order):
-        self.session.merge(order)
+    def update(self, item: Order) -> None:
+        self.session.merge(item)
 
-    def delete(self, order_id: int):
-        order = self.session.get(Order, order_id)
+    def delete(self, item_id: int) -> None:
+        order: Order | None = self.session.get(Order, item_id)
         if order:
             self.session.delete(order)
 
-    def get_by_id(self, order_id: int) -> Optional[Order]:
-        return self.session.get(Order, order_id)
+    def get_by_id(self, item_id: int) -> Optional[Order]:
+        return self.session.get(Order, item_id)

@@ -35,6 +35,9 @@ jobs:
       run: |
         mypy .
 
+    - name: Run pyright
+      uses: jakebailey/pyright-action@v1.5.1
+
     - name: Run pytest
       run: |
         pytest

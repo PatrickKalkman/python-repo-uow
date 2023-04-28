@@ -4,17 +4,19 @@ from domain.order import Order
 
 
 class InMemoryOrderRepository(BaseRepository[Order]):
-    def __init__(self):
-        self.orders = {}
+    def __init__(self) -> None:
+        self.orders: dict[int, Order] = {}
 
-    def add(self, order: Order):
-        self.orders[order.id] = order
+    def add(self, item: Order) -> None:
+        id: int = item.id if item.id is not None else 0
+        self.orders[id] = item
 
-    def get_by_id(self, order_id: int) -> Optional[Order]:
-        return self.orders.get(order_id)
+    def get_by_id(self, item_id: int) -> Optional[Order]:
+        return self.orders.get(item_id)
 
-    def update(self, order: Order):
-        self.orders[order.id] = order
+    def update(self, item: Order) -> None:
+        id: int = item.id if item.id is not None else 0
+        self.orders[id] = item
 
-    def delete(self, order_id: int):
-        self.orders.pop(order_id, None)
+    def delete(self, item_id: int) -> None:
+        self.orders.pop(item_id, None)
