@@ -9,7 +9,7 @@ class SQLiteOrderRepository(BaseRepository[Order]):
         self.connection: sqlite3.Connection = connection
         self._create_table()
 
-    def _create_table(self):
+    def _create_table(self) -> None:
         cursor: sqlite3.Cursor = self.connection.cursor()
         cursor.execute(
             """

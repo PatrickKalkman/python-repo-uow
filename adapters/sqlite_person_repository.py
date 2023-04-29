@@ -41,13 +41,13 @@ class SQLitePersonRepository(BaseRepository[Person]):
             return Person(row[1], row[2], row[0])
         return None
 
-    def update(self, item: Person):
+    def update(self, item: Person) -> None:
         cursor: sqlite3.Cursor = self.connection.cursor()
         cursor.execute(
             "UPDATE persons SET name=?, age=? WHERE id=?",
             (item.name, item.age, item.id),
         )
 
-    def delete(self, item_id: int):
+    def delete(self, item_id: int) -> None:
         cursor: sqlite3.Cursor = self.connection.cursor()
         cursor.execute("DELETE FROM persons WHERE id=?", (item_id,))
