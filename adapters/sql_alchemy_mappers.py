@@ -3,13 +3,11 @@ from sqlalchemy import (
     Column,
     Integer,
     String,
-    Float,
     ForeignKey,
     MetaData,
 )
+
 from sqlalchemy.orm import registry
-
-
 from domain.order import Order
 from domain.person import Person
 
@@ -29,7 +27,7 @@ def create_tables_and_mappers(metadata: MetaData) -> None:
         Column("id", Integer, primary_key=True),
         Column("person_id", Integer, ForeignKey("person.id")),
         Column("order_date", String),
-        Column("total_amount", Float),
+        Column("total_amount", Integer),
     )
 
     mapper_registry = registry()
